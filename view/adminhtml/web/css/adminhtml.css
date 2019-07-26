@@ -1,0 +1,3 @@
+.admin__menu .item-junior > a:before {
+    content: url('../images/logo.png') !important;
+}

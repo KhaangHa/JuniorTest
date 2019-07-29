@@ -1,0 +1,13 @@
+.clock-box{
+    margin: auto;
+    text-align: center;
+    /*border: 5px solid blue;*/
+    width: 250px;
+}
+.clock-title{
+    font-weight: bold;
+    font-size: 20px;
+}
+.clock-container{
+    font-size: 20px;
+}

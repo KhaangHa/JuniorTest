@@ -1,0 +1,17 @@
+<script>
+    require([
+        "jquery",
+        "mage/calendar"
+    ], function ($) {
+
+        $('#example').datepicker({
+            dateFormat: "yy-mm-dd",
+            timeFormat: "H:m:s",
+            changeMonth: true,
+            changeYear: true,
+            numberOfMonths: 1,
+            showsTime: true,
+            minDate: new Date()
+        });
+    });
+</script>

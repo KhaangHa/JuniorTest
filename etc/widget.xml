@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget class="Magenest\Junior\Block\Widget\Button" id="widget_button">
+        <label>Widget Button</label>
+        <description>Button Custom</description>
+        <parameters>
+            <parameter name="buttons" sort_order="10" visible="true" xsi:type="text">
+                <label>Button Label</label>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

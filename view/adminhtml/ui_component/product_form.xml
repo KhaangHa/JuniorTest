@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
-    <fieldset name="magenest">
+    <fieldset name="magenest_ui">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
-                <item name="label" xsi:type="string">Magenest Custom Fields</item>
+                <item name="label" xsi:type="string">Magenest Date Field</item>
                 <item name="collapsible" xsi:type="boolean">true</item>
                 <item name="dataScope" xsi:type="string">data.magenest</item>
-                <item name="sortOrder" xsi:type="number">10</item>
+                <item name="sortOrder" xsi:type="number">15</item>
             </item>
         </argument>
         <field name="start_date">
@@ -39,7 +39,7 @@
                     <item name="source" xsi:type="string">page</item>
                     <item name="sortOrder" xsi:type="number">20</item>
                     <item name="dataScope" xsi:type="string">end_date</item>
-<!--                    <item name="component" xsi:type="string">Magenest_Junior/js/form/date</item>-->
+                    <item name="component" xsi:type="string">Magenest_Junior/js/form/date</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
                     </item>
@@ -47,9 +47,9 @@
                         <item name="dateFormat" xsi:type="string">yyyy-MM-dd</item>
                         <item name="timeFormat" xsi:type="string">HH:mm:ss</item>
                         <item name="showsTime" xsi:type="boolean">true</item>
-                        <item name="minDate" xsi:type="string">2019-08-01</item>
-                        <item name="maxDate" xsi:type="string">2019-08-05</item>
-<!--                        <item name="minDate" xsi:type="string"><![CDATA[<script>new date(2019, 8 - 12)</script>]]></item>-->
+<!--                        <item name="startDate" xsi:type="string"><!DOCTYPE[<script>moment().startOf('month').subtract(10, 'years');</script>]></item>-->
+<!--                        <item name="endDate" xsi:type="string"><!DOCTYPE[<script>moment().startOf('month').add(2, 'years');</script>]></item>-->
+                        <item name="beforeShowDay" xsi:type="string">calendarCallback</item>
                     </item>
                 </item>
             </argument>

@@ -2,14 +2,13 @@ require([
     "jquery",
     "mage/calendar"
 ], function ($) {
-    $(input=['magenest[end_date]']).datepicker({
-        dateFormat: "yy-mm-dd",
-        timeFormat: "H:m:s",
-        changeMonth: true,
-        changeYear: true,
-        numberOfMonths: 1,
-        showsTime: true,
-        minDate: new Date(2010, 0, 1),
-        maxDate: new Date(2010, 5, 31),
+    $("input[name = 'magenest[end_date]']").datepicker({
+        beforeShowDay: function(date) {
+            var day = date.getDay();
+            var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+            var ddates =  disabledDate.indexOf(string) == -1 ;
+            var dday = disabledDay.indexOf(day) === -1 ;
+            return [dday && ddates];
+        }
     });
 });

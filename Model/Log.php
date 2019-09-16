@@ -7,8 +7,6 @@
  */
 namespace Magenest\Junior\Model;
 
-
-
 use Magento\Framework\Model\AbstractModel;
 
 class Log extends AbstractModel

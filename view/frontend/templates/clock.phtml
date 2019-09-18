@@ -1,31 +1,42 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <script>
-        function startTime() {
-            var today = new Date();
-            var h = today.getHours();
-            var m = today.getMinutes();
-            var s = today.getSeconds();
-            m = checkTime(m);
-            s = checkTime(s);
-            document.getElementById('txt').innerHTML =
-                h + ":" + m + ":" + s;
-            var t = setTimeout(startTime, 500);
-        }
-        function checkTime(i) {
-            if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-            return i;
-        }
-    </script>
-</head>
-
+<?php
+/**
+ * @var \Magenest\Junior\Block\Header $this
+ */
+    $sizeConfig = $this->getSize();
+    $clockSize = $sizeConfig == 1 ? 15 : (($sizeConfig == 2) ? 25 : 45);
+?>
 <body onload="startTime()">
 <div class="clock-box">
-    <div class="clock-title"><?=$this->getTitle()?></div>
-    <div class="clock-container" id="txt" style="color: <?=$this->getTextColor()?>; background-color: <?=$this->getBackgroundColor()?>"></div>
+    <div class="clock-title"><span id="title"><?= $this->getTitle() ?></span></div>
+    <div class="clock-container"
+         style="color: <?= $this->getTextColor() ?>; background-color: <?= $this->getBackgroundColor() ?>">
+        <span id="clock"></span>
+    </div>
 </div>
-
-
 </body>
-</html>
+<script>
+    function startTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('clock').innerHTML =
+            h + ":" + m + ":" + s;
+        var t = setTimeout(startTime, 500);
+    }
+
+    function checkTime(i) {
+        if (i < 10) {
+            i = "0" + i
+        }
+        ;  // add zero in front of numbers < 10
+        return i;
+    }
+</script>
+<style>
+    #title,#clock{
+        font-size: <?= $clockSize ?>px;
+    }
+</style>

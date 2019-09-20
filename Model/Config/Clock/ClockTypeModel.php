@@ -3,6 +3,7 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+
 namespace Magenest\Junior\Model\Config\Clock;
 
 use Magento\Framework\App\Cache\TypeListInterface;
@@ -51,7 +52,8 @@ class ClockTypeModel extends Value
         AbstractDb $resourceCollection = null,
         array $data = [],
         Json $serializer = null
-    ) {
+    )
+    {
         $this->mathRandom = $mathRandom;
         $this->serializer = $serializer ?: \Magento\Framework\App\ObjectManager::getInstance()
             ->get(Json::class);
@@ -76,17 +78,13 @@ class ClockTypeModel extends Value
         $group = [];
         $type = [];
         foreach ($value as $data) {
-            if (empty($data['customer_group']) || empty($data['clock_type'])) {
-                continue;
+            if (!empty($data)) {
+                if ($data['customer_group'] == null || $data['clock_type'] == null) {
+                    continue;
+                }
+                array_push($group, $data['customer_group']);
+                array_push($type, $data['clock_type']);
             }
-//            $country = $data['customer_group'];
-//            if (array_key_exists($country, $result)) {
-//                $result[$country] = $this->appendUniqueCountries($result[$country], $data['clock_type']);
-//            } else {
-//                $result[$country] = $data['clock_type'];
-//            }
-            array_push($group, $data['customer_group']);
-            array_push($type, $data['clock_type']);
         }
         $result = ['customer_group' => $group, 'clock_type' => $type];
         $this->setValue($this->serializer->serialize($result));
@@ -115,26 +113,14 @@ class ClockTypeModel extends Value
      * @param array $value
      * @return array
      */
-    protected function encodeArrayFieldValue(array $value)
-    {
-        $result = [];
-        foreach ($value as $country => $creditCardType) {
-            $id = $this->mathRandom->getUniqueHash('_');
-            $result[$id] = ['customer_group' => $country, 'clock_type' => $creditCardType];
-        }
-        return $result;
-    }
+//    protected function encodeArrayFieldValue(array $value)
+//    {
+//        $result = [];
+//        foreach ($value as $country => $creditCardType) {
+//            $id = $this->mathRandom->getUniqueHash('_');
+//            $result[$id] = ['customer_group' => $country, 'clock_type' => $creditCardType];
+//        }
+//        return $result;
+//    }
 
-    /**
-     * Append unique countries to list of exists and reindex keys
-     *
-     * @param array $countriesList
-     * @param array $inputCountriesList
-     * @return array
-     */
-    private function appendUniqueCountries(array $countriesList, array $inputCountriesList)
-    {
-        $result = array_merge($countriesList, $inputCountriesList);
-        return array_values(array_unique($result));
-    }
 }

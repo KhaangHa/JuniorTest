@@ -19,10 +19,6 @@ class Dynamic extends AbstractFieldArray
      */
     protected $renderer = null;
 
-    /**
-     * @var null
-     */
-    protected $clockTypeRenderer = null;
 
     /**
      * @return \Magento\Framework\View\Element\BlockInterface|null
@@ -88,17 +84,14 @@ class Dynamic extends AbstractFieldArray
      */
     protected function _prepareArrayRow(DataObject $row)
     {
-        $country = $row->getCountryId();
+        $customerGroup = $row->getGroupRenderer();
         $options = [];
-        if ($country) {
-            $options['option_' . $this->getCountryRenderer()->calcOptionHash($country)]
+        if ($customerGroup) {
+            $options['option_' . $this->getGroupRenderer()->calcOptionHash($customerGroup)]
                 = 'selected="selected"';
-
-            $ccTypes = $row->getCcTypes();
-            foreach ($ccTypes as $cardType) {
-                $options['option_' . $this->getCcTypesRenderer()->calcOptionHash($cardType)]
-                    = 'selected="selected"';
-            }
+            $clockType = $row->getClockType();
+            $options['option_' . $this->getClockType()->calcOptionHash($clockType)]
+                = 'selected="selected"';
         }
         $row->setData('option_extra_attrs', $options);
     }

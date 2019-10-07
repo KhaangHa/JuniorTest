@@ -7,7 +7,7 @@
         </tab>
         <section id="magenest_clock" translate="label" type="text" sortOrder="100" showInDefault="1"
                  showInWebsite="1"
-                 showInStore="1">
+                 showInStore="1" >
             <class>separator-top</class>
             <label>Clock</label>
             <tab>magenest</tab>

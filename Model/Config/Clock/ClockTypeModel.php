@@ -55,8 +55,7 @@ class ClockTypeModel extends Value
     )
     {
         $this->mathRandom = $mathRandom;
-        $this->serializer = $serializer ?: \Magento\Framework\App\ObjectManager::getInstance()
-            ->get(Json::class);
+        $this->serializer = $serializer ?: \Magento\Framework\App\ObjectManager::getInstance()->get(Json::class);
         parent::__construct($context, $registry, $config, $cacheTypeList, $resource, $resourceCollection, $data);
     }
 
@@ -96,16 +95,16 @@ class ClockTypeModel extends Value
      *
      * @return $this
      */
-//    public function afterLoad()
-//    {
-//        if ($this->getValue()) {
-//            $value = $this->serializer->unserialize($this->getValue());
-//            if (is_array($value)) {
-//                $this->setValue($this->encodeArrayFieldValue($value));
-//            }
-//        }
-//        return $this;
-//    }
+    public function afterLoad()
+    {
+        if ($this->getValue()) {
+            $value = $this->serializer->unserialize($this->getValue());
+            if (is_array($value)) {
+                $this->setValue($this->encodeArrayFieldValue($value));
+            }
+        }
+        return $this;
+    }
 
     /**
      * Encode value to be used in \Magento\Config\Block\System\Config\Form\Field\FieldArray\AbstractFieldArray
@@ -113,14 +112,13 @@ class ClockTypeModel extends Value
      * @param array $value
      * @return array
      */
-//    protected function encodeArrayFieldValue(array $value)
-//    {
-//        $result = [];
-//        foreach ($value as $country => $creditCardType) {
-//            $id = $this->mathRandom->getUniqueHash('_');
-//            $result[$id] = ['customer_group' => $country, 'clock_type' => $creditCardType];
-//        }
-//        return $result;
-//    }
-
+    protected function encodeArrayFieldValue(array $value)
+    {
+        $result = [];
+        foreach ($value as $group => $type) {
+            $id = $this->mathRandom->getUniqueHash('_');
+            $result[$id] = ['customer_group' => $group, 'clock_type' => $type];
+        }
+        return $result;
+    }
 }

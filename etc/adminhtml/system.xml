@@ -39,7 +39,7 @@
                 </field>
 
                 <field id="clock_type" translate="label" type="text" sortOrder="1"
-                       showInDefault="1" showInWebsite="1" showInStore="1">
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Clock type</label>
                     <frontend_model>Magenest\Junior\Block\Adminhtml\Form\Dynamic</frontend_model>
                     <backend_model>Magenest\Junior\Model\Config\Clock\ClockTypeModel</backend_model>

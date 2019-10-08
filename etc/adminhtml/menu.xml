@@ -6,7 +6,7 @@
              module="Magenest_Junior" sortOrder="50"
              dependsOnModule="Magenest_Junior" resource="Magenest_Junior::junior"/>
 
-        <add id="Magenest_Affiliate::Clock"
+        <add id="Magenest_Junior::Clock"
              title="Countdown Management"
              module="Magenest_Junior"
              sortOrder="5"
@@ -17,6 +17,6 @@
         <add id="Magenest_Junior::clock_config" title="Clock Configuration"
              module="Magenest_Junior" sortOrder="10" parent="Magenest_Junior::junior"
              action="adminhtml/system_config/edit/section/magenest_clock"
-             resource="Magenest_Junior::affiliate_config"/>
+             resource="Magenest_Junior::clock_config"/>
     </menu>
 </config>

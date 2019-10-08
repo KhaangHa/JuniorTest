@@ -11,44 +11,53 @@ use Magento\Framework\View\Element\Html\Select;
 class CustomerGroups extends Select
 {
     /**
-     * @var Country
+     * Model Enabledisable
+     *
+     * @var \Magento\Config\Model\Config\Source\Enabledisable
      */
-    private $helper;
+    protected $_enableDisable;
 
     /**
-     * Constructor
+     * Activation constructor.
      *
-     * @param Context $context
-     * @param CustomerGroup
+     * @param \Magento\Framework\View\Element\Context $context
+     * @param \Magento\Config\Model\Config\Source\Enabledisable $enableDisable $enableDisable
      * @param array $data
      */
-    public function __construct(Context $context, CustomerGroup $customerHelper, array $data = [])
-    {
+    public function __construct(
+        \Magento\Framework\View\Element\Context $context,
+        \Magento\Config\Model\Config\Source\Enabledisable $enableDisable,
+        array $data = []
+    ) {
         parent::__construct($context, $data);
-        $this->helper = $customerHelper;
+
+        $this->_enableDisable = $enableDisable;
     }
 
     /**
-     * Render block HTML
-     *
-     * @return string
-     */
-    protected function _toHtml()
-    {
-        if (!$this->getOptions()) {
-            $this->setOptions($this->helper->getGroups());
-        }
-        return parent::_toHtml();
-    }
-
-    /**
-     * Sets name for input element
-     *
      * @param string $value
-     * @return $this
+     * @return Magently\Tutorial\Block\Adminhtml\Form\Field\Activation
      */
     public function setInputName($value)
     {
         return $this->setName($value);
+    }
+
+    /**
+     * Parse to html.
+     *
+     * @return mixed
+     */
+    public function _toHtml()
+    {
+        if (!$this->getOptions()) {
+            $attributes = $this->_enableDisable->toOptionArray();
+
+            foreach ($attributes as $attribute) {
+                $this->addOption($attribute['value'], $attribute['label']);
+            }
+        }
+
+        return parent::_toHtml();
     }
 }

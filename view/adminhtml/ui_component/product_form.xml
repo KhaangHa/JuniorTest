@@ -43,14 +43,14 @@
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
                     </item>
-                    <item name="options" xsi:type="array">
-                        <item name="dateFormat" xsi:type="string">yyyy-MM-dd</item>
-                        <item name="timeFormat" xsi:type="string">HH:mm:ss</item>
-                        <item name="showsTime" xsi:type="boolean">true</item>
+<!--                    <item name="options" xsi:type="array">-->
+<!--                        <item name="dateFormat" xsi:type="string">yyyy-MM-dd</item>-->
+<!--                        <item name="timeFormat" xsi:type="string">HH:mm:ss</item>-->
+<!--                        <item name="showsTime" xsi:type="boolean">true</item>-->
 <!--                        <item name="startDate" xsi:type="string"><!DOCTYPE[<script>moment().startOf('month').subtract(10, 'years');</script>]></item>-->
 <!--                        <item name="endDate" xsi:type="string"><!DOCTYPE[<script>moment().startOf('month').add(2, 'years');</script>]></item>-->
-                        <item name="beforeShowDay" xsi:type="string">calendarCallback</item>
-                    </item>
+<!--                        <item name="beforeShowDay" xsi:type="string">calendarCallback</item>-->
+<!--                    </item>-->
                 </item>
             </argument>
         </field>

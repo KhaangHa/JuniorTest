@@ -19,6 +19,7 @@
                     <item name="source" xsi:type="string">page</item>
                     <item name="sortOrder" xsi:type="number">10</item>
                     <item name="dataScope" xsi:type="string">start_date</item>
+                    <item name="component" xsi:type="string">Magenest_Junior/js/form/date</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
                     </item>
@@ -36,21 +37,12 @@
                     <item name="dataType" xsi:type="string">string</item>
                     <item name="label" xsi:type="string" translate="true">To</item>
                     <item name="formElement" xsi:type="string">date</item>
-                    <item name="source" xsi:type="string">page</item>
                     <item name="sortOrder" xsi:type="number">20</item>
                     <item name="dataScope" xsi:type="string">end_date</item>
                     <item name="component" xsi:type="string">Magenest_Junior/js/form/date</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
                     </item>
-<!--                    <item name="options" xsi:type="array">-->
-<!--                        <item name="dateFormat" xsi:type="string">yyyy-MM-dd</item>-->
-<!--                        <item name="timeFormat" xsi:type="string">HH:mm:ss</item>-->
-<!--                        <item name="showsTime" xsi:type="boolean">true</item>-->
-<!--                        <item name="startDate" xsi:type="string"><!DOCTYPE[<script>moment().startOf('month').subtract(10, 'years');</script>]></item>-->
-<!--                        <item name="endDate" xsi:type="string"><!DOCTYPE[<script>moment().startOf('month').add(2, 'years');</script>]></item>-->
-<!--                        <item name="beforeShowDay" xsi:type="string">calendarCallback</item>-->
-<!--                    </item>-->
                 </item>
             </argument>
         </field>

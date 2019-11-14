@@ -31,6 +31,10 @@ class UpgradeData implements UpgradeDataInterface
         if (version_compare($context->getVersion(), '1.0.2', '<' )) {
             $this->addInputAttribute($setup);
         }
+        if (version_compare($context->getVersion(), '1.0.3', '<' )) {
+            $this->addProductPrice($setup);
+        }
+
     }
     public function addCustomerGroupAttribute($setup){
         $eavSetup = $this->eavSetupFactory->create(['setup' => $setup]);
@@ -93,5 +97,38 @@ class UpgradeData implements UpgradeDataInterface
                 'unique' => false,
             ]
         );
+    }
+    public function addProductPrice($setup){
+        /** @var EavSetup $eavSetup */
+        $eavSetup = $this->eavSetupFactory->create(['setup' => $setup]);
+
+        //associate these attributes with new product type
+        $fieldList = [
+            'price',
+            'special_price',
+            'special_from_date',
+            'special_to_date',
+            'minimal_price',
+            'cost',
+            'tier_price',
+            'weight',
+        ];
+
+        // make these attributes applicable to new product type
+        foreach ($fieldList as $field) {
+            $applyTo = explode(
+                ',',
+                $eavSetup->getAttribute(\Magento\Catalog\Model\Product::ENTITY, $field, 'apply_to')
+            );
+            if (!in_array(\Magenest\Junior\Model\Product\Type\MagenestProduct::TYPE_ID, $applyTo)) {
+                $applyTo[] = \Magenest\Junior\Model\Product\Type\MagenestProduct::TYPE_ID;
+                $eavSetup->updateAttribute(
+                    \Magento\Catalog\Model\Product::ENTITY,
+                    $field,
+                    'apply_to',
+                    implode(',', $applyTo)
+                );
+            }
+        }
     }
 }

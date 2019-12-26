@@ -2,4 +2,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Magenest\Junior\Api\MyInterface" type="Magenest\Junior\Model\MyClass"/>
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="magenest_product_special_price_name" type="Magenest\Junior\Plugin\Product"/>
+    </type>
 </config>

@@ -1,0 +1,62 @@
+<?php
+/** @var Magenest\Junior\Block\Product\View $block */
+$hasInfo = $block->giftCardHasInfo();
+?>
+<?php if(!$hasInfo):?>
+<div id="gift-card-form">
+    <fieldset>
+        <legend><?= __("GIFT CARD") ?></legend>
+        <form id="frm-gift-card" data-mage-init='{"validation": {}}'>
+            <div class="field required">
+                <label for="receiver_name"><?= __("Receiver name") ?></label>
+                <input type="text"
+                       id="receiver_name"
+                       name="receiver_name"
+                       data-validate="{required:true, 'validate-receiver-name': true}"
+                />
+            </div>
+            <div class="field required">
+                <label for="receiver_message"><?= __("Message") ?></label>
+                <textarea name="receiver_message" id="receiver_message"
+                          data-validate="{required:true, 'validate-receiver-message': true}"
+                ></textarea>
+            </div>
+            <button id="btn-save" type="button">Save Message</button>
+        </form>
+    </fieldset>
+</div>
+<?php else: ?>
+<div id="gift-card-view">
+    <fieldset>
+        <legend><?= __("GIFT CARD") ?></legend>
+        <label><?= __("Receiver name") ?>: </label> <span><?=__("Something");?></span><br>
+        <label><?= __("Message") ?>: </label> <span><?=__("Else");?></span>
+    </fieldset>
+</div>
+<?php endif; ?>
+<script>
+    require(['jquery', 'mage/validation'],
+        function ($) {
+            $.validator.addMethod(
+                'validate-receiver-name', function (value) {
+                    return value.length < 100;
+                }, $.mage.__("Please input maximum 100 characters in this field")
+            );
+            $.validator.addMethod(
+                'validate-receiver-message', function (value) {
+                    return value.length < 1000;
+                }, $.mage.__("Please input maximum 1000 characters in this field")
+            );
+        });
+</script>
+<script type="text/x-magento-init">
+{
+    "*": {
+        "view": {
+            "submitUrl": "<?= $block->getUrl('junior/ajax_giftcard/save'); ?>"
+        }
+    }
+}
+
+
+</script>

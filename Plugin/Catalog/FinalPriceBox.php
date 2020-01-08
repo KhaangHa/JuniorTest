@@ -17,9 +17,9 @@ class FinalPriceBox {
     }
 
     public function afterToHtml($subject, $result){
-        if($this->isConfigEnable() && !$this->customerSession->isLoggedIn()){
-            $result = '<span style="color:red">You need to log in to see product price</span>';
-        }
+//        if($this->isConfigEnable() && !$this->customerSession->isLoggedIn()){
+//            $result = '<span style="color:red">You need to log in to see product price</span>';
+//        }
         return $result;
     }
 

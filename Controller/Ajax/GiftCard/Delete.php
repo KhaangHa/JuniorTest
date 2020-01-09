@@ -11,7 +11,7 @@ use Magento\Framework\Controller\ResultFactory;
  * Class Save
  * @package Magenest\Junior\Controller\Ajax\GiftCard
  */
-class Save extends Action
+class Delete extends Action
 {
     /**
      * @var Cookie
@@ -37,13 +37,13 @@ class Save extends Action
         $result = $this->resultFactory->create(ResultFactory::TYPE_JSON);
         if ($this->_request->isAjax()) {
             try {
-                $params = $this->_request->getParams();
-                $this->cookieHelper->set(json_encode($params));
+
+                $this->cookieHelper->delete();
                 return $result->setData([
                     'errMsg' => false,
-                    'data' => json_encode($params)
                 ]);
-            } catch (\Exception $exception) {
+            } catch
+            (\Exception $exception) {
                 return $result->setData(
                     [
                         'errMsg' => $exception->getMessage(),

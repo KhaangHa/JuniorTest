@@ -1,39 +1,40 @@
 <?php
 /** @var Magenest\Junior\Block\Product\View $block */
-$hasInfo = $block->giftCardHasInfo();
+$cookieName = \Magenest\Junior\Helper\Cookie::COOKIE_NAME;
 ?>
-<?php if(!$hasInfo):?>
-<div id="gift-card-form">
+<div class="gift-card">
     <fieldset>
         <legend><?= __("GIFT CARD") ?></legend>
-        <form id="frm-gift-card" data-mage-init='{"validation": {}}'>
-            <div class="field required">
-                <label for="receiver_name"><?= __("Receiver name") ?></label>
-                <input type="text"
-                       id="receiver_name"
-                       name="receiver_name"
-                       data-validate="{required:true, 'validate-receiver-name': true}"
-                />
-            </div>
-            <div class="field required">
-                <label for="receiver_message"><?= __("Message") ?></label>
-                <textarea name="receiver_message" id="receiver_message"
-                          data-validate="{required:true, 'validate-receiver-message': true}"
-                ></textarea>
-            </div>
-            <button id="btn-save" type="button">Save Message</button>
-        </form>
+        <div id="gift-card-form">
+            <form id="frm-gift-card" data-mage-init='{"validation": {}}'>
+                <div class="field required">
+                    <label for="receiver_name"><?= __("Receiver name") ?></label>
+                    <input type="text"
+                           class="receiver_name"
+                           id="receiver_name"
+                           name="receiver_name"
+                           data-validate="{required:true, 'validate-receiver-name': true}"
+                    />
+                </div>
+                <div class="field required">
+                    <label for="receiver_message"><?= __("Message") ?></label>
+                    <textarea class="receiver_message" name="receiver_message" id="receiver_message"
+                              data-validate="{required:true, 'validate-receiver-message': true}"></textarea>
+                </div>
+                <button class="action primary" id="btn-save" type="button"><?=__("Save Message")?></button>
+            </form>
+        </div>
+        <div id="gift-card-view" hidden="hidden">
+            <label class="gift-card-view-label"><?= __("Receiver name") ?>: </label> <span
+                    id="view_receiver_name"></span><br>
+            <label class="gift-card-view-label"><?= __("Message") ?>: </label> <span id="view_receiver_message"></span><br>
+            <button class="action primary" id="gift-card-view-edit"><?=__("Edit");?></button>
+        </div>
+        <a  id="btn-delete"><?=__("Clear"); ?></a>
     </fieldset>
 </div>
-<?php else: ?>
-<div id="gift-card-view">
-    <fieldset>
-        <legend><?= __("GIFT CARD") ?></legend>
-        <label><?= __("Receiver name") ?>: </label> <span><?=__("Something");?></span><br>
-        <label><?= __("Message") ?>: </label> <span><?=__("Else");?></span>
-    </fieldset>
-</div>
-<?php endif; ?>
+
+
 <script>
     require(['jquery', 'mage/validation'],
         function ($) {
@@ -53,10 +54,17 @@ $hasInfo = $block->giftCardHasInfo();
 {
     "*": {
         "view": {
-            "submitUrl": "<?= $block->getUrl('junior/ajax_giftcard/save'); ?>"
+            "submitUrl": "<?= $block->getUrl('junior/ajax_giftcard/save'); ?>",
+            "deleteUrl": "<?= $block->getUrl('junior/ajax_giftcard/delete'); ?>",
+            "cookieName": "<?= $cookieName; ?>"
         }
     }
 }
 
 
 </script>
+<style>
+    .gift-card-view-label {
+        font-weight: bold;
+    }
+</style>

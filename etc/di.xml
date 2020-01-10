@@ -3,4 +3,12 @@
     <type name="Magento\Catalog\Pricing\Render\FinalPriceBox">
         <plugin name="cataloghideprice_finalpricebox" type="Magenest\Junior\Plugin\Catalog\FinalPriceBox"/>
     </type>
+
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid" type="Magento\Sales\Model\ResourceModel\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="gift_card" xsi:type="string">sales_order.gift_card</item>
+            </argument>
+        </arguments>
+    </virtualType>
 </config>

@@ -8,6 +8,7 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\UpgradeDataInterface;
 use Magento\Sales\Model\Order;
 use Magento\Sales\Setup\SalesSetup;
+use Magento\Sales\Setup\SalesSetupFactory;
 
 /**
  * Class UpgradeData
@@ -39,7 +40,7 @@ class UpgradeData implements UpgradeDataInterface
     {
         $setup->startSetup();
         $installer = $setup;
-        if (version_compare($context->getVersion(), '1.0.2', '<')) {
+        if (version_compare($context->getVersion(), '1.0.3', '<')) {
             $this->addOrderGiftCardAttr($installer);
         }
         $setup->endSetup();

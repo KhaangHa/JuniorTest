@@ -2,13 +2,13 @@
 namespace Magenest\Junior\Plugin\Catalog;
 use Magento\Customer\Model\Session;
 use Magento\Framework\App\Config\ScopeConfigInterface;
-
+use Magento\Customer\Model\SessionFactory;
 class FinalPriceBox {
     const CONFIG_PATH = 'magenest_junior/hideprice/enable';
     protected $customerSession;
     protected $scopeConfig;
     public function __construct(
-        Session $customerSession,
+        SessionFactory $customerSession,
         ScopeConfigInterface $scopeConfig
     )
     {
@@ -17,10 +17,16 @@ class FinalPriceBox {
     }
 
     public function afterToHtml($subject, $result){
-//        if($this->isConfigEnable() && !$this->customerSession->isLoggedIn()){
-//            $result = '<span style="color:red">You need to log in to see product price</span>';
-//        }
+        if($this->isConfigEnable() && !$this->getCustomerId()){
+            $message = __("You need to log in to see product price");
+            $result = '<span style="color:red">'. $message .'</span>';
+        }
         return $result;
+    }
+    public function getCustomerId(){
+        /** @var Session $customer */
+        $customer = $this->customerSession->create();
+        return $customer->getCustomer()->getId();
     }
 
     public function isConfigEnable(){

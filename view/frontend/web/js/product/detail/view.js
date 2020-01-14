@@ -12,7 +12,10 @@ define([
         return function (config) {
             $(document).ready(function () {
                 info = $.cookie(config.cookieName);
-                setFormData($.parseJSON(info));
+                if(info!=null){
+                    show(view);
+                    setFormData($.parseJSON(info));
+                }
             });
             //Submit
             $("#btn-save").click(function () {

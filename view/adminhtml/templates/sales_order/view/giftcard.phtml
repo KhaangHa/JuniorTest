@@ -1,0 +1,20 @@
+<?php
+/** @var \Magenest\Junior\Block\Adminhtml\SalesOrder\View\GiftCardInfo $block */
+$order = $block->getOrder();
+$giftCard = $block->getGiftCard($order);
+$cardName = $giftCard['name'] ?? '';
+$cardMessage = $giftCard['message'] ?? '';
+?>
+<?php if ($giftCard != null): ?>
+    <section class="admin__page-section order-view-gift-card">
+        <div class="admin__page-section-title">
+            <span class="title"><?= $block->escapeHtml(__("Gift Card")) ?></span>
+        </div>
+        <div class="admin__page-section-content">
+            <div class="admin__page-section-item">
+                <span><b>Name: </b><?= $block->escapeHtml($cardName) ?></span><br>
+                <span><b>Message: </b><?= $block->escapeHtml($cardMessage) ?></span>
+            </div>
+        </div>
+    </section>
+<?php endif; ?>

@@ -1,0 +1,17 @@
+<?php
+$_order = $block->getOrder();
+$giftCardInfo = json_decode($_order->getGiftCard(), true);
+$name = $giftCardInfo["name"] ?? null;
+$message = $giftCardInfo["message"] ?? null;
+?>
+<td data-th="<?= $block->escapeHtml(__('Status')) ?>" class="col status">
+    <?php if (!empty($giftCardInfo)): ?>
+        <fieldset>
+            <legend>GIFT CARD</legend>
+            <span><b>To: </b><?= $block->escapeHtml($name); ?></span>
+            <br>
+            <span><b>Message: </b><?= $block->escapeHtml(mb_strlen($message) > 50 ? substr($message, 0, 50) . ". . ." : $message); ?></span>
+        </fieldset>
+    <?php endif; ?>
+</td>
+

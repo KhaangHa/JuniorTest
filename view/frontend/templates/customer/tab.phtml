@@ -1,0 +1,13 @@
+<?php
+/** @var Magenest\Junior\Block\Product\View $blockHelper */
+$blockHelper = $block->getLayout()->createBlock('Magenest\Junior\Block\Product\View');
+$orderDetail = $blockHelper->getOrderDetail();
+?>
+<div class="order-details-items">
+    <?php if ($orderDetail != null): ?>
+        <span><b><?= $block->escapeHtml(__("Name: ")) ?></b><?= $block->escapeHtml($orderDetail['name'] ?? '') ?></span><br>
+        <span><b><?=$block->escapeHtml(__("Message: ")) ?></b><?= $block->escapeHtml($orderDetail['message'] ?? '') ?></span>
+    <?php else: ?>
+    <span><?= $block->escapeHtml(__("This order doesn't have any gift card information.")) ?></span>
+    <?php endif; ?>
+</div>

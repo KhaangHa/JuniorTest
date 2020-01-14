@@ -3,4 +3,7 @@
     <event name="sales_order_save_before">
         <observer name="magenest_junior_sales_order_save_after" instance="Magenest\Junior\Observer\SalesOrder\SaveAfter" shared="false" />
     </event>
+    <event name="sales_order_save_commit_after">
+        <observer name="magenest_junior_remove_giftcard_after_place_order" instance="Magenest\Junior\Observer\GiftCard\Remove" shared="false" />
+    </event>
 </config>

@@ -3,7 +3,10 @@
     <head>
         <script src="Magenest_Junior::js/product/detail/view" />
     </head>
-    <referenceContainer name="product.info.main">
-        <block class="Magenest\Junior\Block\Product\View" name="magenest_junior_gift_card" template="Magenest_Junior::catalog/product/gift_card.phtml" after="product.info.price"/>
-    </referenceContainer>
+    <body>
+        <referenceContainer name="product.info.main">
+            <block class="Magenest\Junior\Block\Product\View" name="magenest_junior_gift_card" template="Magenest_Junior::catalog/product/gift_card.phtml" after="product.info.price"/>
+        </referenceContainer>
+        <move element="product.info.details" destination="page.wrapper" after="main.content" />
+    </body>
 </page>
